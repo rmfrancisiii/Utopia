@@ -6,10 +6,10 @@
 // Peer spoofs a NetAddr for sending purposes
 
 Peer {
-	var <name, <addr, <online, <effectList;
+	var <name, <addr, <online, <effectList, <effectBank;
 
-	*new {|name, addr, online = true, effectList |
-		^super.newCopyArgs(name.asSymbol, addr, online, effectList = EffectList.new);
+	*new {|name, addr, online = true, effectList, effectBank |
+		^super.newCopyArgs(name.asSymbol, addr, online, effectList = EffectList.new, effectBank = EffectBank.new);
 	}
 
 	*newFrom { |item|
@@ -50,7 +50,7 @@ Peer {
 
 	// post pretty
 	printOn { |stream|
-		stream << this.class.name << "(" <<* [name, addr, online, effectList.list] << ")"
+		stream << this.class.name << "(" <<* [name, addr, online] << ")"
 	}
 
 	sendRaw { arg rawArray;
